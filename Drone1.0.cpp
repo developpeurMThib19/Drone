@@ -86,6 +86,17 @@ class Drone {
 
             std::cout << "----------------------\n";
         }
+
+        void eteindre() {
+            if (estAllume == false) {
+                std::cout << "Le drone est deja eteint.\n";
+            } else if (altitude > 0) {
+                std::cout << "Impossible d'eteindre le drone : il est en vol.\n";
+            } else {
+                estAllume = false;
+                std::cout << "Le drone est maintenant eteint.\n";
+            }
+        }
 };
 
 int main() {
@@ -95,25 +106,28 @@ int main() {
     while (choix != 6) {
         std::cout << "\n=== MENU DRONE ===\n";
         std::cout << "1 - Allumer le drone\n";
-        std::cout << "2 - Decoller\n";
-        std::cout << "3 - Monter\n";
-        std::cout << "4 - Descendre\n";
-        std::cout << "5 - Afficher l'etat\n";
-        std::cout << "6 - Quitter\n";
+        std::cout << "2 - Eteindre le drone\n";
+        std::cout << "3 - Decoller\n";
+        std::cout << "4 - Monter\n";
+        std::cout << "5 - Descendre\n";
+        std::cout << "6 - Afficher l'etat\n";
+        std::cout << "7 - Quitter\n";
         std::cout << "Votre choix : ";
         std::cin >> choix;
 
         if (choix == 1) {
             drone.allumer();
         } else if (choix == 2) {
-            drone.decoller();
+            drone.eteindre();
         } else if (choix == 3) {
-            drone.monter();
+            drone.decoller();
         } else if (choix == 4) {
-            drone.descendre();
+            drone.monter();
         } else if (choix == 5) {
-            drone.afficherEtat();
+            drone.descendre();
         } else if (choix == 6) {
+            drone.afficherEtat();
+        } else if (choix == 7) {
             std::cout << "Fermeture du programme.\n";
         } else {
             std::cout << "Choix invalide.\n";
