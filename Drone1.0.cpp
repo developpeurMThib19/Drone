@@ -41,8 +41,8 @@ class Drone {
                 std::cout << "Impossible de decoller : le drone est eteint.\n";
             } else if (altitude > 0) {
                 std::cout << "Le drone est déjà en l'aire.\n";
-            } else if (batterie <= 0) {
-                std::cout << "Batterie vide. Impossible de decoller.\n";
+            } else if (batterie <= 10) {
+                std::cout << "Batterie trop faible pour decoller.\n";
             } else {
                 altitude = 1.0;
                 batterie -= 5;
@@ -55,8 +55,8 @@ class Drone {
                 std::cout << "Impossible de monter : le drone est eteint.\n";
             } else if (altitude <= 0) {
                 std::cout << "Le drone doit d'abord decoller.\n";
-            } else if (batterie <= 0) {
-                std::cout << "Batterie vide. Impossible de monter.\n";
+            } else if (batterie < 2) {
+                std::cout << "Batterie trop faible pour monter.\n";
             } else if (altitude >= altitudeMax){
                 std::cout << "Altitude maximale atteinte.\n";
             } else {
@@ -113,7 +113,7 @@ int main() {
     Drone drone;
     int choix = 0;
 
-    while (choix != 6) {
+    while (choix != 7) {
         std::cout << "\n=== MENU DRONE ===\n";
         std::cout << "1 - Allumer le drone\n";
         std::cout << "2 - Eteindre le drone\n";
