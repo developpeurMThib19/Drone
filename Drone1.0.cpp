@@ -4,12 +4,14 @@
 class Drone {
     private: 
         float altitude;
+        float altitudeMax;
         int batterie;
         bool estAllume;
     
     public:
         Drone() {
             altitude = 0.0;
+            altitudeMax = 10.0;
             batterie = 100;
             estAllume = false;
         }
@@ -20,6 +22,17 @@ class Drone {
                 std::cout << "Le drone est maintenant allume.\n";
             } else {
                 std::cout << "Le drone est déjà allume.\n";
+            }
+        }
+
+        void eteindre() {
+            if (estAllume == false) {
+                std::cout << "Le drone est deja eteint.\n";
+            } else if (altitude > 0) {
+                std::cout << "Impossible d'eteindre le drone : il est en vol.\n";
+            } else {
+                estAllume = false;
+                std::cout << "Le drone est maintenant eteint.\n";
             }
         }
 
@@ -44,6 +57,8 @@ class Drone {
                 std::cout << "Le drone doit d'abord decoller.\n";
             } else if (batterie <= 0) {
                 std::cout << "Batterie vide. Impossible de monter.\n";
+            } else if (altitude >= altitudeMax){
+                std::cout << "Altitude maximale atteinte.\n";
             } else {
                 altitude += 1.0;
                 batterie -= 2;
@@ -70,6 +85,7 @@ class Drone {
         void afficherEtat() {
             std::cout << "\n--- Etat du drone ---\n";
             std::cout << "Altitude : " << altitude << " m\n";
+            std::cout << "Altitude  Max : " << altitudeMax << " m\n";
             std::cout << "Batterie : " << batterie << "%\n";
 
             if (estAllume == true) {
@@ -84,19 +100,13 @@ class Drone {
                 std::cout << "Position : au sol\n";
             }
 
+            if (batterie <= 20) {
+                std::cout << "Alerte : batterie faible\n";
+            }
+
             std::cout << "----------------------\n";
         }
 
-        void eteindre() {
-            if (estAllume == false) {
-                std::cout << "Le drone est deja eteint.\n";
-            } else if (altitude > 0) {
-                std::cout << "Impossible d'eteindre le drone : il est en vol.\n";
-            } else {
-                estAllume = false;
-                std::cout << "Le drone est maintenant eteint.\n";
-            }
-        }
 };
 
 int main() {
